@@ -1,3 +1,14 @@
+/**
+ *
+ */
+
+/**
+ * WEBSITE: https://themefisher.com
+ * TWITTER: https://twitter.com/themefisher
+ * FACEBOOK: https://www.facebook.com/themefisher
+ * GITHUB: https://github.com/themefisher/
+ */
+
 (function ($) {
   'use strict';
 
@@ -29,13 +40,13 @@
 
 
   // Fixed header
-  $(window).on('scroll', function () {
+/*  $(window).on('scroll', function () {
     if ($(window).scrollTop() > 70) {
       $('.site-navigation,.trans-navigation').addClass('header-white');
     } else {
       $('.site-navigation,.trans-navigation').removeClass('header-white');
     }
-  });
+  }); */
   
 
 	// scroll-to-top

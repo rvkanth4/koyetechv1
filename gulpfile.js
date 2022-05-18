@@ -17,7 +17,6 @@ var path = {
     incdir: 'source/partials/',
     plugins: 'source/plugins/**/*.*',
     js: 'source/js/*.js',
-    scss: 'source/scss/**/*.scss',
     images: 'source/images/**/*.+(png|jpg|gif|svg)'
   },
   build: {
@@ -33,46 +32,18 @@ gulp.task('html:build', function () {
       basepath: path.src.incdir
     }))
     .pipe(comments(`
-    WEBSITE: https://themefisher.com
-    TWITTER: https://twitter.com/themefisher
-    FACEBOOK: https://www.facebook.com/themefisher
-    GITHUB: https://github.com/themefisher/
-    `))
+      `))
     .pipe(gulp.dest(path.build.dirDev))
     .pipe(bs.reload({
       stream: true
     }));
 });
 
-// SCSS
-gulp.task('scss:build', function () {
-  return gulp.src(path.src.scss)
-    .pipe(sourcemaps.init())
-    .pipe(sass({
-      outputStyle: 'expanded'
-    }).on('error', sass.logError))
-    .pipe(autoprefixer())
-    .pipe(sourcemaps.write('/'))
-    .pipe(comments(`
-    WEBSITE: https://themefisher.com
-    TWITTER: https://twitter.com/themefisher
-    FACEBOOK: https://www.facebook.com/themefisher
-    GITHUB: https://github.com/themefisher/
-    `))
-    .pipe(gulp.dest(path.build.dirDev + 'css/'))
-    .pipe(bs.reload({
-      stream: true
-    }));
-});
 
 // Javascript
 gulp.task('js:build', function () {
   return gulp.src(path.src.js)
     .pipe(comments(`
-  WEBSITE: https://themefisher.com
-  TWITTER: https://twitter.com/themefisher
-  FACEBOOK: https://www.facebook.com/themefisher
-  GITHUB: https://github.com/themefisher/
   `))
     .pipe(gulp.dest(path.build.dirDev + 'js/'))
     .pipe(bs.reload({
@@ -113,7 +84,6 @@ gulp.task('clean', function (cb) {
 gulp.task('watch:build', function () {
   gulp.watch(path.src.html, gulp.series('html:build'));
   gulp.watch(path.src.htminc, gulp.series('html:build'));
-  gulp.watch(path.src.scss, gulp.series('scss:build'));
   gulp.watch(path.src.js, gulp.series('js:build'));
   gulp.watch(path.src.images, gulp.series('images:build'));
   gulp.watch(path.src.plugins, gulp.series('plugins:build'));
@@ -124,7 +94,6 @@ gulp.task('default', gulp.series(
   'clean',
   'html:build',
   'js:build',
-  'scss:build',
   'images:build',
   'plugins:build',
   'others:build',
@@ -153,17 +122,6 @@ gulp.task('html:netlify:build', function () {
     .pipe(gulp.dest(path.build.dirNetlify));
 });
 
-// SCSS
-gulp.task('scss:netlify:build', function () {
-  return gulp.src(path.src.scss)
-    .pipe(sourcemaps.init())
-    .pipe(sass({
-      outputStyle: 'expanded'
-    }).on('error', sass.logError))
-    .pipe(autoprefixer())
-    .pipe(sourcemaps.write('/maps'))
-    .pipe(gulp.dest(path.build.dirNetlify + 'css/'));
-});
 
 // Javascript
 gulp.task('js:netlify:build', function () {
@@ -193,7 +151,6 @@ gulp.task('others:netlify:build', function () {
 gulp.task('netlify', gulp.series(
   'html:netlify:build',
   'js:netlify:build',
-  'scss:netlify:build',
   'images:netlify:build',
   'plugins:netlify:build'
 ));
