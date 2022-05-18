@@ -1,10 +1,4 @@
-<!-- licence -->
-## License
-Copyright &copy; 2021 Designed & Developed by [Themefisher](https://themefisher.com)
 
-**Code License:** Released under the [MIT](https://github.com/themefisher/Rappo-It-Solutions-Corporate-Template/blob/master/LICENSE) license.
-
-**Image license:** The images are only for demonstration purposes. They have their own licence, we don't have permission to share those image.
 
 <!-- resources -->
 ## Resources
